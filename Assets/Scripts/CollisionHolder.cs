@@ -12,16 +12,32 @@ public class CollisionHolder : MonoBehaviour
                 Debug.Log("Friendly");
                 break;
             case "Finish":
-                Debug.Log("Finish");
+                LoadNextLevel();
                 break;
             case "Fuel":
                 Debug.Log("Fuel");
                 break;
             default:
-                Debug.Log("Lose");
-
-                SceneManager.LoadScene(0);
+                ReloadLevel();
                 break;
         }
+    }
+
+    void ReloadLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0;
+        }
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }
