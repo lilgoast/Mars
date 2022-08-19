@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CollisionHolder : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class CollisionHolder : MonoBehaviour
                 break;
             default:
                 Debug.Log("Lose");
+
+                SceneManager.LoadScene(0);
                 break;
         }
     }
