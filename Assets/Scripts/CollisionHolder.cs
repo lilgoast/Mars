@@ -4,9 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHolder : MonoBehaviour
 {
-    [SerializeField] float levelLoadDelay = 1f;
+    [SerializeField] float levelLoadDelay = 2f;
+
     [SerializeField] AudioClip crash;
     [SerializeField] AudioClip success;
+
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem crashParticles;
     
     AudioSource audioSource;
 
@@ -41,7 +45,9 @@ public class CollisionHolder : MonoBehaviour
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
-        //todo add particle upon crash
+
+        crashParticles.Play();
+
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
     }
@@ -51,7 +57,9 @@ public class CollisionHolder : MonoBehaviour
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(success);
-        //todo add particle upon tuch finish
+
+        successParticles.Play();
+
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
     }

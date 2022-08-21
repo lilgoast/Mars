@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!198 &428958699 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7041125312174675668, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
+  m_PrefabInstance: {fileID: 5285372497318409053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &614875662 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2319862669395107551, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
+  m_PrefabInstance: {fileID: 5285372497318409053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +445,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 769959887, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
+      propertyPath: crashParticles
+      value: 
+      objectReference: {fileID: 614875662}
+    - target: {fileID: 769959887, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
+      propertyPath: successParticles
+      value: 
+      objectReference: {fileID: 428958699}
     - target: {fileID: 3712815081069472403, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
       propertyPath: m_RootOrder
       value: 5
