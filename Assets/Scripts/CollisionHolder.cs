@@ -7,8 +7,10 @@ public class CollisionHolder : MonoBehaviour
     [SerializeField] float levelLoadDelay = 1f;
     [SerializeField] AudioClip crash;
     [SerializeField] AudioClip success;
-
+    
     AudioSource audioSource;
+
+    bool isTransitioning = false;
 
     private void Start()
     {
@@ -17,13 +19,15 @@ public class CollisionHolder : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        if (isTransitioning) { return; }
+
         switch(other.gameObject.tag)
         {
             case "Friendly":
                 Debug.Log("Friendly");
                 break;
             case "Finish":
-                LevelSuccessSequense();
+                StartSuccessSequense();
                 break;
             //todo add fuel mechanic
             default:
@@ -34,14 +38,18 @@ public class CollisionHolder : MonoBehaviour
 
     void StartCrashSequense()
     {
+        isTransitioning = true;
+        audioSource.Stop();
         audioSource.PlayOneShot(crash);
         //todo add particle upon crash
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
     }
 
-    void LevelSuccessSequense()
+    void StartSuccessSequense()
     {
+        isTransitioning = true;
+        audioSource.Stop();
         audioSource.PlayOneShot(success);
         //todo add particle upon tuch finish
         GetComponent<Movement>().enabled = false;
