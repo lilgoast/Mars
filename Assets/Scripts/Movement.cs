@@ -35,58 +35,80 @@ public class Movement : MonoBehaviour
 
     void ProcessTrust()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            if(!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }
-
-            if(!engineParticle.isPlaying)
-            {
-                engineParticle.Play();
-                engineParticleLeft.Play();
-                engineParticleRight.Play();
-            }
-
-            rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
+            StartTrusting();
         }
         else
         {
-            audioSource.Stop();
-
-            engineParticle.Stop();
-            engineParticleRight.Stop();
-            engineParticleLeft.Stop();
+            StopTrusting();
         }
     }
 
     void ProcessRotation()
     {
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationSpeed);
-
-            if(!rotationParticleLeft.isPlaying)
-            {
-                rotationParticleLeft.Play();
-            }
+            LeftRotation();
         }
-
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotationSpeed);
-
-            if (!rotationParticleRight.isPlaying)
-            {
-                rotationParticleRight.Play();
-            }
+            RightRotation();
         }
-        else 
+        else
         {
-            rotationParticleRight.Stop(); 
-            rotationParticleLeft.Stop();
+            StopRotation();
         }
+    }
+
+    void StartTrusting()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+
+        if (!engineParticle.isPlaying)
+        {
+            engineParticle.Play();
+            engineParticleLeft.Play();
+            engineParticleRight.Play();
+        }
+
+        rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
+    }
+    void StopTrusting()
+    {
+        audioSource.Stop();
+
+        engineParticle.Stop();
+        engineParticleRight.Stop();
+        engineParticleLeft.Stop();
+    }
+
+    private void LeftRotation()
+    {
+        ApplyRotation(rotationSpeed);
+
+        if (!rotationParticleLeft.isPlaying)
+        {
+            rotationParticleLeft.Play();
+        }
+    }
+    private void RightRotation()
+    {
+        ApplyRotation(-rotationSpeed);
+
+        if (!rotationParticleRight.isPlaying)
+        {
+            rotationParticleRight.Play();
+        }
+    }
+
+    private void StopRotation()
+    {
+        rotationParticleRight.Stop();
+        rotationParticleLeft.Stop();
     }
 
     public void ApplyRotation(float rotationThisFrame)

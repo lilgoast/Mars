@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!198 &266637884 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 9039710261341022567, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
-  m_PrefabInstance: {fileID: 5285372497318409053}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,16 +301,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &1616684480 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2367334195172143599, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
-  m_PrefabInstance: {fileID: 5285372497318409053}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1823723270 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7083720830408061279, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
-  m_PrefabInstance: {fileID: 5285372497318409053}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1950085575595788929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -498,18 +483,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket (Player)
       objectReference: {fileID: 0}
-    - target: {fileID: 5285372499009489898, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
-      propertyPath: engineParticle
-      value: 
-      objectReference: {fileID: 1823723270}
-    - target: {fileID: 5285372499009489898, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
-      propertyPath: engineParticleLeft
-      value: 
-      objectReference: {fileID: 266637884}
-    - target: {fileID: 5285372499009489898, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
-      propertyPath: engineParticleRight
-      value: 
-      objectReference: {fileID: 1616684480}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f060740ce9c95ec4cb1c8f9ceb4d4841, type: 3}
