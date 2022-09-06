@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
 
         rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
     }
-    void StopTrusting()
+    public void StopTrusting()
     {
         audioSource.Stop();
 
@@ -105,7 +105,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void StopRotation()
+    public void StopRotation()
     {
         rotationParticleRight.Stop();
         rotationParticleLeft.Stop();

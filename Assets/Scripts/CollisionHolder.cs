@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class CollisionHolder : MonoBehaviour
 {
     [SerializeField] float levelLoadDelay = 2f;
@@ -13,6 +12,7 @@ public class CollisionHolder : MonoBehaviour
     [SerializeField] ParticleSystem crashParticles;
     
     AudioSource audioSource;
+    Movement movement;
 
     bool isTransitioning = false;
     bool collisionDisabled = false;
@@ -20,6 +20,7 @@ public class CollisionHolder : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        movement = GetComponent<Movement>();
     }
 
     private void Update()
@@ -37,6 +38,13 @@ public class CollisionHolder : MonoBehaviour
         {
             collisionDisabled = !collisionDisabled;
         }
+        else if (Input.GetKeyDown(KeyCode.F))
+        {
+            if(GetComponent<FuelMechanic>().enabled == false)
+                GetComponent<FuelMechanic>().enabled = true;
+            else
+                GetComponent<FuelMechanic>().enabled = false;
+        }
     }
 
     void OnCollisionEnter(Collision other)
@@ -50,7 +58,8 @@ public class CollisionHolder : MonoBehaviour
             case "Finish":
                 StartSuccessSequense();
                 break;
-            //todo add fuel mechanic
+            case "Fuel":
+                break;
             default:
                 StartCrashSequense();
                 break;
@@ -60,24 +69,29 @@ public class CollisionHolder : MonoBehaviour
     void StartCrashSequense()
     {
         isTransitioning = true;
-        audioSource.Stop();
-        audioSource.PlayOneShot(crash);
-
-        crashParticles.Play();
 
         GetComponent<Movement>().enabled = false;
+        movement.StopTrusting();
+        movement.StopRotation();
+
+        crashParticles.Play();
+        audioSource.PlayOneShot(crash);
+
         Invoke("ReloadLevel", levelLoadDelay);
     }
 
     void StartSuccessSequense()
     {
         isTransitioning = true;
-        audioSource.Stop();
-        audioSource.PlayOneShot(success);
-
-        successParticles.Play();
 
         GetComponent<Movement>().enabled = false;
+
+        movement.StopTrusting();
+        movement.StopRotation();
+
+        successParticles.Play();
+        audioSource.PlayOneShot(success);
+
         Invoke("LoadNextLevel", levelLoadDelay);
     }
 

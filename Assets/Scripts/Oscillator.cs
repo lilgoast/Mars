@@ -17,11 +17,12 @@ public class Oscillator : MonoBehaviour
 
     void Update()
     {
-        if(period == 0)
+        if(period <= Mathf.Epsilon)
         {
             Debug.Log("Period can't be 0");
-            period = 1f;
+            return;
         }
+
         ChangePostion();
     }
 
@@ -39,7 +40,7 @@ public class Oscillator : MonoBehaviour
     {
         float cycles = Time.time / period; //continually growing over time
 
-        const float tau = Mathf.PI * 2; 
+        const float tau = Mathf.PI * 2f; 
 
         return Mathf.Sin(cycles * tau);
     }
